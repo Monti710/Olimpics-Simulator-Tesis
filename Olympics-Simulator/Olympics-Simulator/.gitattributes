@@ -1,0 +1,30 @@
+# Git LFS para imágenes, texturas y modelos
+*.psd
+*.png filter=lfs diff=lfs merge=lfs -text
+*.jpg filter=lfs diff=lfs merge=lfs -text
+*.jpeg
+*.tga
+*.exr filter=lfs diff=lfs merge=lfs -text
+*.tif
+*.tiff
+# Git LFS para archivos de audio y video
+*.mp3
+*.wav
+*.ogg
+*.mp4
+*.mov
+# Git LFS para modelos 3D
+*.fbx filter=lfs diff=lfs merge=lfs -text
+*.obj
+*.blend
+# Git LFS para assets Unity
+*.prefab
+*.unity
+*.asset
+*.mat
+*.anim
+*.controller
+# Git LFS para fuentes y dlls
+*.ttf
+*.otf
+*.dll

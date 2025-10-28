@@ -1,0 +1,34 @@
+{
+    "name": "XRRightHandInputActions",
+    "maps": [
+        {
+            "name": "RightHand",
+            "id": "f8acd143-0fb6-44ef-bfb1-9de4e62f5b1c",
+            "actions": [
+                {
+                    "name": "PrimaryButton",
+                    "type": "Button",
+                    "id": "30cd289e-8f13-416d-bf20-2ef765eeb2be",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e937627b-0e6f-42f7-ab4a-aca0c48e1c3c",
+                    "path": "<XRController>{RightHand}/{PrimaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PrimaryButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

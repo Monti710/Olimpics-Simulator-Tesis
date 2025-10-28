@@ -1,0 +1,34 @@
+{
+    "name": "Auto Pointer Left",
+    "maps": [
+        {
+            "name": "Auto Pointer Left",
+            "id": "ce1c9580-5e28-4137-b14b-8f9ea7473824",
+            "actions": [
+                {
+                    "name": "Auto Pointer Left",
+                    "type": "Button",
+                    "id": "49d0177f-2b09-4ae9-b92a-90fd01850a9d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "473b0d5c-001d-4fdd-9ad1-9fa871d50104",
+                    "path": "<XRController>{LeftHand\\}/grip",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Auto Pointer Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

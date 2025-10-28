@@ -1,0 +1,34 @@
+{
+    "name": "Auto Pointer Right",
+    "maps": [
+        {
+            "name": "Auto Pointer Right",
+            "id": "25e89ff7-2b80-4daf-8915-e2ed29913b03",
+            "actions": [
+                {
+                    "name": "Auto Pointer Right",
+                    "type": "Button",
+                    "id": "b2d69afd-c40c-43d1-8a16-d84f9099193d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "3fd6e883-87f0-480e-85d4-b231f7070818",
+                    "path": "<XRController>{RightHand\\}/grip",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Auto Pointer Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
