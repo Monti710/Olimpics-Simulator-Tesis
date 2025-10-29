@@ -13,9 +13,12 @@ public class ToggleSettingsView : MonoBehaviour
     public TextMeshProUGUI bulletMarkStatusText;
     public TextMeshProUGUI autoPointerStatusText;
 
-    // ⭐ NUEVO CAMPO: Componente a Activar/Desactivar ⭐
-    // Usamos 'Behaviour' para poder asignar cualquier script, Renderer, Light, Collider, etc.
+    // Campo del BulletMark (sin cambios)
     public TrailRenderer bulletMarkTargetComponent;
+
+    // ⭐ NUEVOS CAMPOS: Dos LineRenderer para el AutoPointer ⭐
+    public Behaviour autoPointerLine1;
+    public Behaviour autoPointerLine2;
 
     // Constantes de texto
     private const string EnabledText = "Activado";
@@ -50,8 +53,10 @@ public class ToggleSettingsView : MonoBehaviour
         UpdateStatusText(bulletMarkStatusText, bulletMark);
         UpdateStatusText(autoPointerStatusText, autoPointer);
 
-        // ⭐ LÓGICA DEL COMPONENTE: Sincronizar estado del componente al abrir el menú ⭐
+        // Sincronizar componentes al cargar
         SetBulletMarkComponentState(bulletMark);
+        // ⭐ NUEVA LLAMADA: Sincronizar LineRenderers del AutoPointer ⭐
+        SetAutoPointerComponentsState(autoPointer);
     }
 
     private void OnBulletMarkChanged(bool? newValue)
@@ -60,38 +65,64 @@ public class ToggleSettingsView : MonoBehaviour
 
         if (!newValue.HasValue) return;
 
-        // ⭐ LÓGICA DEL COMPONENTE: Activar/Desactivar inmediatamente al hacer clic ⭐
         SetBulletMarkComponentState(newValue.Value);
 
         UpdateSettingsBuffer(newValue.Value, SettingsManager.Instance.CurrentAutoPointer);
     }
 
+    // ⭐ Manejador de evento del AutoPointer Switcher MODIFICADO ⭐
     private void OnAutoPointerChanged(bool? newValue)
     {
         UpdateStatusText(autoPointerStatusText, newValue);
 
         if (!newValue.HasValue) return;
 
+        // ⭐ LLAMADA DE ACCIÓN: Activar/Desactivar los LineRenderers ⭐
+        SetAutoPointerComponentsState(newValue.Value);
+
         UpdateSettingsBuffer(SettingsManager.Instance.CurrentBulletMark, newValue.Value);
     }
 
-    // ⭐ MÉTODO DEDICADO PARA MANEJAR EL ESTADO DEL COMPONENTE ⭐
+    // --- Métodos de Control de Componentes ---
+
     private void SetBulletMarkComponentState(bool isEnabled)
     {
         if (bulletMarkTargetComponent != null)
         {
-            // La propiedad 'enabled' activa/desactiva la funcionalidad del componente.
             bulletMarkTargetComponent.enabled = isEnabled;
-            // Si quieres activar/desactivar todo el GameObject, usarías: 
-            // bulletMarkTargetComponent.gameObject.SetActive(isEnabled);
         }
         else
         {
-            Debug.LogWarning("bulletMarkTargetComponent no ha sido asignado en el Inspector.");
+            Debug.LogWarning("bulletMarkTargetComponent no ha sido asignado.");
         }
     }
 
-    // ... (El resto de los métodos UpdateStatusText y UpdateSettingsBuffer permanecen sin cambios) ...
+    // ⭐ NUEVO MÉTODO DEDICADO PARA LOS LINE RENDERERS DEL AUTO POINTER ⭐
+    private void SetAutoPointerComponentsState(bool isEnabled)
+    {
+        // Activar/Desactivar el primer LineRenderer
+        if (autoPointerLine1 != null)
+        {
+            autoPointerLine1.enabled = isEnabled;
+        }
+        else
+        {
+            Debug.LogWarning("AutoPointerLine1 no ha sido asignado.");
+        }
+
+        // Activar/Desactivar el segundo LineRenderer
+        if (autoPointerLine2 != null)
+        {
+            autoPointerLine2.enabled = isEnabled;
+        }
+        else
+        {
+            Debug.LogWarning("AutoPointerLine2 no ha sido asignado.");
+        }
+    }
+
+    // --- Métodos de Utilidad (sin cambios) ---
+
     private void UpdateStatusText(TextMeshProUGUI targetText, bool? value)
     {
         if (targetText == null) return;
@@ -108,13 +139,11 @@ public class ToggleSettingsView : MonoBehaviour
 
     private void UpdateSettingsBuffer(bool newBulletMark, bool newAutoPointer)
     {
-        // Obtener TODOS los demás valores del buffer de memoria
         float volume = SettingsManager.Instance.CurrentVolume;
         float sound = SettingsManager.Instance.CurrentSound;
         float brightness = SettingsManager.Instance.CurrentBrightness;
         bool isLeftHanded = SettingsManager.Instance.CurrentIsLeftHanded;
 
-        // Llamar a UpdateInMemorySettings con todos los valores
         SettingsManager.Instance.UpdateInMemorySettings(
             volume, sound, brightness, isLeftHanded, newBulletMark, newAutoPointer);
     }

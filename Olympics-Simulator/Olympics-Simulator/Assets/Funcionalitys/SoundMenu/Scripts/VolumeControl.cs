@@ -20,9 +20,11 @@ public class VolumeControl : MonoBehaviour
     [Header("UI Sliders")]
     [Tooltip("Slider para controlar el volumen de la Música")]
     [SerializeField] private Slider volumeSlider;
+    [SerializeField] private Slider volumeSlider1;
 
     [Tooltip("Slider para controlar el volumen de los Efectos de Sonido")]
     [SerializeField] private Slider soundSlider;
+    [SerializeField] private Slider soundSlider1;
 
     private const string VolumeKey = "Volume";
     private const string SoundKey = "Sound";
@@ -45,7 +47,9 @@ public class VolumeControl : MonoBehaviour
 
         // 3) Sincronizar los sliders (si existen), sin disparar callbacks
         ConfigureSlider(volumeSlider, musicVol, OnMusicSliderChanged);
+        ConfigureSlider(volumeSlider1, musicVol, OnMusicSliderChanged);
         ConfigureSlider(soundSlider, soundVol, OnSoundSliderChanged);
+        ConfigureSlider(soundSlider1, soundVol, OnSoundSliderChanged);
     }
 
     private void ConfigureSlider(Slider slider, float initialValue, UnityEngine.Events.UnityAction<float> callback)
