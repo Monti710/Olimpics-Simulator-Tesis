@@ -1,4 +1,0 @@
-repository "Olympics-Simulator/Olympics-Simulator@4674071658071@cloud"
-  path "/"
-    br "/main"
-    co "/main"
