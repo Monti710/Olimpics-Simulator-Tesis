@@ -719,6 +719,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3341686841981942036, guid: 8b04e09650243c443ab07683c9d0bd91, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5138924461910544458, guid: 8b04e09650243c443ab07683c9d0bd91, type: 3}
       propertyPath: m_LocalPosition.x
       value: -21.26
@@ -1094,7 +1098,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 601683021}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5aa961181f33b1a4bbbb3402bd49b8b6, type: 3}
   m_Name: 
@@ -4024,7 +4028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c03823031768954aa14e77358b2e9a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: Ranking
+  sceneToLoad: RankingScene
 --- !u!1 &1324244077
 GameObject:
   m_ObjectHideFlags: 0

@@ -2881,7 +2881,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &931043510
 Transform:
   m_ObjectHideFlags: 0
@@ -7944,7 +7944,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &4423835006947135281
 GameObject:
   m_ObjectHideFlags: 0
@@ -10810,7 +10810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c03823031768954aa14e77358b2e9a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: LevelForest
+  sceneToLoad: RankingScene
 --- !u!114 &9058955881494436591
 MonoBehaviour:
   m_ObjectHideFlags: 0

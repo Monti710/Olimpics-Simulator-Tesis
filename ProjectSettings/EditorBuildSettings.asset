@@ -16,16 +16,19 @@ EditorBuildSettings:
     guid: 784692a3e104f4d4daec5db07b23ce7b
   - enabled: 0
     path: Assets/Scenes/DesertMap_Level2.unity
-    guid: 6be7570cdb4786c4f8c4a2d80e8de9b5
+    guid: c6466bb54c1dc344d926c89f88057d85
   - enabled: 0
     path: Assets/Scenes/DesertMap_Level3.unity
-    guid: 88a0cef710840054e951ac2e40e0a702
+    guid: 405452df15c9b0b47a12f4e09d7ae9b5
   - enabled: 1
     path: Assets/Scenes/Level_Tutorial.unity
     guid: 7838580d1f1c58b4888e5c94ddb772f8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Ranking.unity
     guid: b8dcb3a4c8195e64ab77fba11dc138f2
+  - enabled: 1
+    path: Assets/Scenes/RankingScene.unity
+    guid: 213700a3d4bac47468a3b9a826692f89
   - enabled: 1
     path: Assets/Scenes/ScoreScene.unity
     guid: c1e6a876ab9b03f43bcf30a1402c5813
