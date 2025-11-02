@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 1582561974045195125}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0608, y: 2.297111, z: 0.1452}
+  m_LocalPosition: {x: 0.14659971, y: 2.2561593, z: 0.1452}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -91,8 +91,8 @@ TrailRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.003479004
-        value: 0.0063171387
+        time: 1
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -104,8 +104,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 0.9924528, g: 0, b: 0, a: 1}
+      key1: {r: 0.9924528, g: 0, b: 0, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -216,7 +216,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1068122285865215810
 Rigidbody:
@@ -228,7 +228,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.01
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -260,6 +260,7 @@ MonoBehaviour:
   lifeSeconds: 5
   impactPrefab: {fileID: 8218206925182167407, guid: 39f15414af1ed624bba411d38f0e8d5f, type: 3}
   impactLifetime: 1.5
+  impactScale: 5
   hitMask:
     serializedVersion: 2
     m_Bits: 4294967295
