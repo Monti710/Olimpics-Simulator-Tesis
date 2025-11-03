@@ -1,11 +1,7 @@
 fileFormatVersion: 2
-guid: 9db6b0998b7cff048b5f4250790b6d77
-MonoImporter:
+guid: a49f8a4e9ae03bb46bfd013c0181a149
+PrefabImporter:
   externalObjects: {}
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -14,5 +10,5 @@ AssetOrigin:
   productId: 275645
   packageName: Toggle button with three values
   packageVersion: 1.0
-  assetPath: Assets/UISwitcher/Example/Example.cs
+  assetPath: Assets/UISwitcher/UISwitcher/Resources/UISwitcherThin.prefab
   uploadId: 641053

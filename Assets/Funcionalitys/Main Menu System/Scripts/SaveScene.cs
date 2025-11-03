@@ -26,6 +26,7 @@ public class SaveScene : MonoBehaviour
         string valorGuardado = PlayerPrefs.GetString(SceneSaveWithDIfficulty, "MainMenu");
         string valorConjunto = valorGuardado + nameScene;
 
+        PlayerPrefs.SetString("LevelScene", valorConjunto);
         PlayerPrefs.SetString("NextScene", valorConjunto); // Guarda el destino
         SceneManager.LoadScene("LoadingScene"); // Va a la escena de carga
 

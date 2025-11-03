@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5413781258902280937}
   - component: {fileID: 1068122285865215810}
   - component: {fileID: -330249933634065807}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bala
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ TrailRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1582561974045195125}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -263,4 +263,4 @@ MonoBehaviour:
   impactScale: 5
   hitMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 247
