@@ -61,28 +61,46 @@ public class Projectile : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        // Filtrado por capas válidas
         if ((hitMask.value & (1 << collision.collider.gameObject.layer)) == 0) return;
 
-        // Obtener punto de impacto
         var contact = collision.GetContact(0);
+
         if (impactPrefab)
         {
-            // Crear el efecto del impacto
             var fx = Instantiate(
                 impactPrefab,
                 contact.point,
                 Quaternion.LookRotation(contact.normal)
             );
-
-            // 🔹 APLICAR ESCALA (tamaño del impacto)
             fx.transform.localScale *= impactScale;
-
-            // Destruir el efecto después del tiempo definido
             Destroy(fx, impactLifetime);
         }
 
-        // Destruir el proyectil después del impacto
+        // 🔹 Crear un clon visual del Trail antes de destruir la bala
+        if (tr != null)
+        {
+            // Crear un objeto vacío para mantener el rastro
+            GameObject trailClone = new GameObject("TrailClone");
+            var newTrail = trailClone.AddComponent<TrailRenderer>();
+
+            // Copiar propiedades del original
+            newTrail.time = 5f; // tiempo que permanece el rastro
+            newTrail.material = tr.material;
+            newTrail.colorGradient = tr.colorGradient;
+            newTrail.widthCurve = tr.widthCurve;
+            newTrail.widthMultiplier = tr.widthMultiplier;
+            newTrail.alignment = tr.alignment;
+            newTrail.textureMode = tr.textureMode;
+
+            // Posicionar el clon donde terminó el proyectil
+            trailClone.transform.position = transform.position;
+            trailClone.transform.rotation = transform.rotation;
+
+            // Destruir el clon después de 5 segundos
+            Destroy(trailClone, 5f);
+        }
+
         Destroy(gameObject);
     }
+
 }

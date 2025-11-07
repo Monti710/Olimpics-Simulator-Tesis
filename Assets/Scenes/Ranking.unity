@@ -1847,6 +1847,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   top5Text: {fileID: 277153645}
   allScoresText: {fileID: 858735775}
+  firstPlaceText: {fileID: 0}
+  secondPlaceText: {fileID: 0}
+  thirdPlaceText: {fileID: 0}
 --- !u!114 &1660915089
 MonoBehaviour:
   m_ObjectHideFlags: 0

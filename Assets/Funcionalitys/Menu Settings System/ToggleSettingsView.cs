@@ -40,6 +40,11 @@ public class ToggleSettingsView : MonoBehaviour
         RefreshUIFromSettings();
     }
 
+    private void OnDisable()
+    {
+        RefreshUIFromSettings();
+    }
+
     public void RefreshUIFromSettings()
     {
         if (SettingsManager.Instance == null) return;
@@ -143,8 +148,10 @@ public class ToggleSettingsView : MonoBehaviour
         float sound = SettingsManager.Instance.CurrentSound;
         float brightness = SettingsManager.Instance.CurrentBrightness;
         bool isLeftHanded = SettingsManager.Instance.CurrentIsLeftHanded;
+        bool userInterface = SettingsManager.Instance.CurrentUserInterface;
+        bool visualObjects = SettingsManager.Instance.CurrentVisualObjects;
 
         SettingsManager.Instance.UpdateInMemorySettings(
-            volume, sound, brightness, isLeftHanded, newBulletMark, newAutoPointer);
+            volume, sound, brightness, isLeftHanded, newBulletMark, newAutoPointer, userInterface, visualObjects);
     }
 }

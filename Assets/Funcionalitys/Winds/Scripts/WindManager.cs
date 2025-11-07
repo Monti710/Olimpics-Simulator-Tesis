@@ -19,6 +19,7 @@ public class WindManager : MonoBehaviour
     [Header("UI")]
     [Tooltip("El campo de texto para mostrar la velocidad del viento.")]
     public TextMeshProUGUI windStrengthText;
+    public TextMeshProUGUI windStrengthText1;
 
     [Header("Audio 🔊")]
     [Tooltip("Referencia al componente AudioSource que gestionará el sonido del viento. ¡Debe ser asignado en el Inspector!")]
@@ -98,6 +99,11 @@ public class WindManager : MonoBehaviour
         {
             float windKPH = windStrength * 5f;
             windStrengthText.text = $"Viento: {windKPH:F1}km/h";
+        }
+        if (windStrengthText1 != null)
+        {
+            float windKPH = windStrength * 5f;
+            windStrengthText1.text = $"Viento: {windKPH:F1}km/h";
         }
     }
 

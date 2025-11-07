@@ -89,9 +89,11 @@ public class AudioSettingsView : MonoBehaviour
         bool handedness = SettingsManager.Instance.CurrentIsLeftHanded;
         bool bulletMark = SettingsManager.Instance.CurrentBulletMark;
         bool autoPointer = SettingsManager.Instance.CurrentAutoPointer;
+        bool userInterface = SettingsManager.Instance.CurrentUserInterface;
+        bool visualObjects = SettingsManager.Instance.CurrentVisualObjects;
 
         // Actualiza el buffer en memoria y aplica los cambios al juego
-        SettingsManager.Instance.UpdateInMemorySettings(newVolume, sound, brightness, handedness, bulletMark, autoPointer);
+        SettingsManager.Instance.UpdateInMemorySettings(newVolume, sound, brightness, handedness, bulletMark, autoPointer, userInterface, visualObjects);
     }
 
     public void OnSoundChanged(float newSound)
@@ -102,9 +104,11 @@ public class AudioSettingsView : MonoBehaviour
         bool handedness = SettingsManager.Instance.CurrentIsLeftHanded;
         bool bulletMark = SettingsManager.Instance.CurrentBulletMark;
         bool autoPointer = SettingsManager.Instance.CurrentAutoPointer;
+        bool userInterface = SettingsManager.Instance.CurrentUserInterface;
+        bool visualObjects = SettingsManager.Instance.CurrentVisualObjects;
 
         // Actualiza el buffer en memoria y aplica los cambios al juego
-        SettingsManager.Instance.UpdateInMemorySettings(volume, newSound, brightness, handedness, bulletMark, autoPointer);
+        SettingsManager.Instance.UpdateInMemorySettings(volume, newSound, brightness, handedness, bulletMark, autoPointer, userInterface, visualObjects);
     }
 
     // --- Lógica de Botones (GUARDA EN DISCO O CANCELA) ---
