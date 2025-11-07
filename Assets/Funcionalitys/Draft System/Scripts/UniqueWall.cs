@@ -1,4 +1,4 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 using TMPro; // Necesario para usar TextMeshPro
 
 public class UniqueWall : MonoBehaviour
@@ -6,14 +6,13 @@ public class UniqueWall : MonoBehaviour
     [Header("Componentes Asignables")]
     public PointCounter pointCounter;      // Asignar en el Inspector
     public BoxCollider boxCollider;        // Asignar el BoxCollider en el Inspector
-    public TextMeshProUGUI feedbackText;   // A—ADIDO: TextView/Text para mostrar el puntaje
+    public TextMeshProUGUI feedbackText;   // Texto para mostrar el puntaje
 
-    [Header("ConfiguraciÛn de Feedback")]
+    [Header("Configuraci√≥n de Feedback")]
     [Tooltip("Tiempo que el puntaje permanece visible en segundos.")]
-    public float feedbackDisplayTime = 2f; // A—ADIDO: Tiempo de visualizaciÛn configurable
+    public float feedbackDisplayTime = 2f;
 
-    // ... (El resto de las variables se mantienen igual)
-    private float[] radii = new float[11];   // Radios calculados autom·ticamente
+    private float[] radii = new float[11];   // Radios calculados autom√°ticamente
     private int[] pointValues = new int[11]; // Asignar los puntos para cada radio en el Inspector
 
     private void Start()
@@ -21,13 +20,13 @@ public class UniqueWall : MonoBehaviour
         // Asegurar que el collider NO es trigger
         if (boxCollider != null)
         {
-            boxCollider.isTrigger = false;  // Confirmamos que el BoxCollider no sea un trigger
+            boxCollider.isTrigger = false;
         }
 
-        // Calcular autom·ticamente los radios
+        // Calcular autom√°ticamente los radios
         CalculateCircleRadii();
 
-        // A—ADIDO: Asegurar que el texto estÈ oculto al inicio
+        // Asegurar que el texto est√© oculto al inicio
         if (feedbackText != null)
         {
             feedbackText.gameObject.SetActive(false);
@@ -36,23 +35,31 @@ public class UniqueWall : MonoBehaviour
 
     private void CalculateCircleRadii()
     {
-        // ... (Tu lÛgica para calcular radios se mantiene igual)
-        // Obtener el tamaÒo del BoxCollider (considerando la escala del objeto)
+        // Obtener el tama√±o real del BoxCollider (considerando la escala del objeto)
         float colliderWidth = boxCollider.size.z * boxCollider.transform.lossyScale.z;
         float colliderHeight = boxCollider.size.y * boxCollider.transform.lossyScale.y;
 
-        // Calcular el radio m·ximo (mitad de la dimensiÛn menor)
+        // Calcular el radio m√°ximo (mitad de la dimensi√≥n menor)
         float maxRadius = Mathf.Min(colliderWidth, colliderHeight) / 2f;
-        float radiusStep = maxRadius / 11f;
 
-        // Calcular los radios (de mayor a menor) y asignar los puntajes (1 a 11)
-        for (int i = 0; i < 11; i++)
+        // Cada paso representar√° 1/10 del radio m√°ximo
+        float radiusStep = maxRadius / 10f;
+
+        // Redimensionamos los arreglos para incluir el c√≠rculo extra
+        radii = new float[11];
+        pointValues = new int[11];
+
+        // Crear los 10 c√≠rculos normales (del valor 10 al 1)
+        for (int i = 0; i < 10; i++)
         {
             radii[i] = (i + 1) * radiusStep;
-
-            // Asignar puntajes: el cÌrculo m·s pequeÒo tiene el puntaje m·s alto (11) y el m·s grande tiene 1
-            pointValues[i] = 11 - i;  // Puntaje creciente de 1 a 11
+            pointValues[i] = 10 - i; // 10, 9, 8... 1
         }
+
+        // Crear el c√≠rculo adicional m√°s peque√±o dentro del de valor 10
+        // Este c√≠rculo tiene 0.45 del tama√±o del c√≠rculo m√°s peque√±o (valor 10)
+        radii[10] = radii[0] * 0.45f;
+        pointValues[10] = 11;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -60,76 +67,68 @@ public class UniqueWall : MonoBehaviour
         // Verificar que el objeto que colisiona sea una bala
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            // Obtener el punto de impacto desde la colisiÛn
+            // Obtener el punto de impacto desde la colisi√≥n
             Vector3 impactPoint = collision.GetContact(0).point;
 
-            // Verificar en quÈ cÌrculo impactÛ
+            // Determinar en qu√© c√≠rculo impact√≥
             int pointsToAdd = GetPointsForImpact(impactPoint);
 
             // Sumar los puntos al contador
             pointCounter.AddPoints(pointsToAdd);
 
-            // A—ADIDO: Pasar los puntos a la funciÛn de retroalimentaciÛn
+            // Mostrar retroalimentaci√≥n visual
             GiveFeedback(pointsToAdd);
 
-            // Destruir el proyectil despuÈs del impacto
+            // Destruir el proyectil despu√©s del impacto
             Destroy(collision.gameObject);
         }
     }
 
-    private void GiveFeedback(int points) // MODIFICADO: Ahora recibe los puntos
+    private void GiveFeedback(int points)
     {
         if (feedbackText != null)
         {
-            // 1. Mostrar el puntaje en el texto
             feedbackText.text = "+" + points.ToString();
-
-            // 2. Activar el objeto de texto si no est· activo
             feedbackText.gameObject.SetActive(true);
-
-            // 3. Iniciar la corrutina para ocultar el texto
             StartCoroutine(HideFeedbackAfterDelay());
         }
     }
 
-    // A—ADIDO: Corrutina para ocultar el texto despuÈs de un tiempo
     private System.Collections.IEnumerator HideFeedbackAfterDelay()
     {
-        // Esperar el tiempo especificado en el Inspector
         yield return new WaitForSeconds(feedbackDisplayTime);
 
-        // Ocultar el objeto de texto (desactivar)
         if (feedbackText != null)
         {
             feedbackText.gameObject.SetActive(false);
         }
     }
 
-    // MÈtodo para determinar los puntos seg˙n el impacto
     private int GetPointsForImpact(Vector3 impactPoint)
     {
-        // ... (Tu lÛgica para determinar los puntos se mantiene igual)
         int score = 0;
 
-        // Obtener la posiciÛn real del centro del BoxCollider
+        // Obtener el centro del BoxCollider
         Vector3 boxCenter = boxCollider.bounds.center;
 
-        // Calcular la distancia entre el punto de impacto y el centro del BoxCollider
-        // Nota: Esto deberÌa ser la distancia en el plano del objetivo si es un muro 2D/3D
-        // Para precisiÛn, podrÌas proyectar el impacto y el centro en el plano del muro.
+        // Calcular la distancia entre el punto de impacto y el centro
         float distanceToCenter = Vector3.Distance(impactPoint, boxCenter);
 
-        // Verificar en quÈ cÌrculo impactÛ en base a la distancia al centro
-        // Se asume que los radios est·n ordenados de menor a mayor.
+        // üîπ ORDENAR los radios y valores antes de evaluar
+        System.Array.Sort(radii, pointValues);
+
+        // üîπ Ahora evaluamos de menor a mayor
         for (int i = 0; i < radii.Length; i++)
         {
             if (distanceToCenter <= radii[i])
             {
                 score = pointValues[i];
-                break;
+                break; // ya encontramos el c√≠rculo correspondiente
             }
         }
 
         return score;
     }
+
+
 }

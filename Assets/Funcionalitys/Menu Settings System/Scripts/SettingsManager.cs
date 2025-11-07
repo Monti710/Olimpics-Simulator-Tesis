@@ -16,6 +16,8 @@ public class SettingsManager : MonoBehaviour
     public bool CurrentIsLeftHanded { get; private set; }
     public bool CurrentBulletMark {  get; private set; }
     public bool CurrentAutoPointer { get; private set; }
+    public bool CurrentUserInterface {  get; private set; }
+    public bool CurrentVisualObjects { get; private set; }
 
     void Awake()
     {
@@ -50,7 +52,7 @@ public class SettingsManager : MonoBehaviour
         if (playerSettings == null) return;
 
         // 1. Cargar los datos PERMANENTES del disco
-        playerSettings.LoadPlayerSettings(out float volume, out float sound, out float brightness, out bool isLeftHanded, out bool bulletMark, out bool autoPointer);
+        playerSettings.LoadPlayerSettings(out float volume, out float sound, out float brightness, out bool isLeftHanded, out bool bulletMark, out bool autoPointer, out bool userInterface, out bool visualObjects);
 
         // 2. Almacenar internamente
         CurrentVolume = volume;
@@ -59,11 +61,13 @@ public class SettingsManager : MonoBehaviour
         CurrentIsLeftHanded = isLeftHanded;
         CurrentBulletMark = bulletMark;
         CurrentAutoPointer = autoPointer;
+        CurrentUserInterface = userInterface;
+        CurrentVisualObjects = visualObjects;
 
         Debug.Log("Configuración inicial cargada y aplicada desde disco.");
     }
 
-    public void UpdateInMemorySettings(float newVolume, float newSound, float newBrightness, bool newIsLeftHanded, bool newBulletMark, bool newAutoPointer)
+    public void UpdateInMemorySettings(float newVolume, float newSound, float newBrightness, bool newIsLeftHanded, bool newBulletMark, bool newAutoPointer, bool newUserInterface, bool newVisualObjects)
     {
         // 1. Actualizar el buffer en memoria
         CurrentVolume = newVolume;
@@ -72,6 +76,8 @@ public class SettingsManager : MonoBehaviour
         CurrentIsLeftHanded = newIsLeftHanded;
         CurrentBulletMark = newBulletMark;
         CurrentAutoPointer = newAutoPointer;
+        CurrentUserInterface = newUserInterface;
+        CurrentVisualObjects = newVisualObjects;
 
         // 2. Aplicar los cambios inmediatamente al juego
 
@@ -81,7 +87,7 @@ public class SettingsManager : MonoBehaviour
     public void SaveToDiskAndApply()
     {
         // 1. Guardar los datos del buffer al disco (PlayerSettings)
-        playerSettings.SavePlayerSettings(CurrentVolume, CurrentSound, CurrentBrightness, CurrentIsLeftHanded, CurrentBulletMark, CurrentAutoPointer);
+        playerSettings.SavePlayerSettings(CurrentVolume, CurrentSound, CurrentBrightness, CurrentIsLeftHanded, CurrentBulletMark, CurrentAutoPointer, CurrentUserInterface, CurrentVisualObjects);
 
         // 2. Aplicar al juego (por si acaso)
 

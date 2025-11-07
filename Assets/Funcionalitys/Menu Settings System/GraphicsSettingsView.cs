@@ -84,9 +84,11 @@ public class GraphicsSettingsView : MonoBehaviour
         bool handedness = SettingsManager.Instance.CurrentIsLeftHanded;
         bool bulletMark = SettingsManager.Instance.CurrentBulletMark;
         bool autoPointer = SettingsManager.Instance.CurrentAutoPointer;
+        bool userInterface = SettingsManager.Instance.CurrentUserInterface;
+        bool visualObjects = SettingsManager.Instance.CurrentVisualObjects;
 
         // Actualiza el buffer en memoria y aplica los cambios al juego
-        SettingsManager.Instance.UpdateInMemorySettings(volume, sound, newBrightness, handedness, bulletMark, autoPointer);
+        SettingsManager.Instance.UpdateInMemorySettings(volume, sound, newBrightness, handedness, bulletMark, autoPointer, userInterface, visualObjects);
     }
 
     // --- Lógica de Botones (GUARDA EN DISCO O CANCELA) ---

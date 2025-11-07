@@ -87,9 +87,11 @@ public class HandednessSettingsView : MonoBehaviour
         float brightness = SettingsManager.Instance.CurrentBrightness;
         bool bulletMark = SettingsManager.Instance.CurrentBulletMark;
         bool autoPointer = SettingsManager.Instance.CurrentAutoPointer;
+        bool userInterface = SettingsManager.Instance.CurrentUserInterface;
+        bool visualObjects = SettingsManager.Instance.CurrentVisualObjects;
 
         // 1. Actualiza el buffer en memoria y aplica los cambios al juego
-        SettingsManager.Instance.UpdateInMemorySettings(volume, sound, brightness, isLeftHanded, bulletMark, autoPointer);
+        SettingsManager.Instance.UpdateInMemorySettings(volume, sound, brightness, isLeftHanded, bulletMark, autoPointer, userInterface, visualObjects);
 
         // 2. Actualiza solo la parte visual de este menú
         UpdateButtonColors(isLeftHanded);

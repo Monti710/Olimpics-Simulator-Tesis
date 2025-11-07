@@ -1,121 +1,150 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using TMPro; // Asegúrate de tener este namespace
+using TMPro;
+using System.Collections;
 
 public class SceneMan : MonoBehaviour
 {
     [Header("Time")]
-    public float timeLimit = 60f; // Tiempo total en segundos
-    private float timeRemaining; // Tiempo restante
-    public TextMeshProUGUI timeText; // Referencia al componente TextMeshPro para el tiempo
+    public float timeLimit = 60f;
+    private float timeRemaining;
+    public TextMeshProUGUI timeText;
+    public TextMeshProUGUI timeText1; // <-- ASEGÚRATE DE ASIGNAR ESTO
 
     [Header("Shots")]
-    public int maxShots = 20; // Número máximo de disparos
-    public Shooter shooter; // Referencia al script Shooter para controlar el disparo
-    public GameObject shotIconPrefab; // Prefab que representa una bala
-    public Transform shotsPanel; // Panel donde se mostrarán los iconos de las balas
-    public TextMeshProUGUI shotsText; // Texto que muestra el número de balas restantes
-    public float iconSpacing = 30f; // Espacio entre los íconos de las balas (ajustable desde el Inspector)
+    public int maxShots = 20;
+    public Shooter shooter;
+    public GameObject shotIconPrefab;
+    public Transform shotsPanel;
+    public Transform shotsPanel1; // <-- ASEGÚRATE DE ASIGNAR ESTO
 
-    // Nuevos campos para el manejo de las filas de balas
-    public int maxIconsPerRow = 10; // Máximo de íconos por fila antes de un salto de línea
-    public float lineSpacing = 40f; // Espacio entre las filas de balas
+    public TextMeshProUGUI shotsText;
+    public TextMeshProUGUI shotsText1; // <-- ASEGÚRATE DE ASIGNAR ESTO
+
+    public float iconSpacing = 30f;
+
+    public int maxIconsPerRow = 10;
+    public float lineSpacing = 40f;
 
     [Header("Points")]
-    public TextMeshProUGUI scoreText; // Texto donde se mostrará el puntaje
-    public PointCounter pointCounter; // Contador de puntos
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI scoreText1; // <-- ASEGÚRATE DE ASIGNAR ESTO
+
+    public PointCounter pointCounter;
 
     [Header("Scene Loader")]
     public string sceneToLoad;
 
+    [Header("Scene Delay")]
+    public float delayBeforeSceneLoad = 2f; // Delay configurable desde el Inspector
+
     void Start()
     {
-        // Inicializamos las variables
         timeRemaining = timeLimit;
-
-        // Asignamos el valor de maxShots a Shooter
         shooter.SetMaxShots(maxShots);
-
-        // Aseguramos que el Shooter también maneje las balas
-        UpdateShotDisplay(maxShots); // Para actualizar la visualización inicial de las balas
+        UpdateShotDisplay(maxShots);
     }
 
     void Update()
     {
-        // Reducimos el tiempo restante
         if (timeRemaining > 0)
         {
-            timeRemaining -= Time.deltaTime; // Reduce el tiempo con el tiempo real que pasa
+            timeRemaining -= Time.deltaTime;
         }
         else
         {
-            timeRemaining = 0; // Aseguramos que el tiempo no sea negativo
-            LoadScene(); // Cargamos la escena cuando el tiempo se acaba
+            timeRemaining = 0;
+            LoadScene();
         }
 
-        // Actualizamos el texto con el tiempo restante
         UpdateTimeDisplay();
-        // Actualizamos el puntaje
         UpdateScoreText();
     }
 
-    // Método para actualizar el TextMeshPro con el tiempo restante
     void UpdateTimeDisplay()
     {
-        // Mostramos el tiempo restante en el formato minutos:segundos
         timeText.text = Mathf.Floor(timeRemaining / 60).ToString("00") + ":" + Mathf.Floor(timeRemaining % 60).ToString("00");
+
+        // Esta línea ya estaba, solo necesita la asignación en el Inspector
+        if (timeText1 != null)
+        {
+            timeText1.text = Mathf.Floor(timeRemaining / 60).ToString("00") + ":" + Mathf.Floor(timeRemaining % 60).ToString("00");
+        }
     }
 
-    // Método para actualizar la visualización de las balas
     public void UpdateShotDisplay(int currentShots)
     {
-        // Limpiamos los iconos de las balas existentes
         foreach (Transform child in shotsPanel)
         {
-            Destroy(child.gameObject); // Elimina los iconos de las balas previas
+            Destroy(child.gameObject);
         }
 
-        // Mostramos el número de disparos restantes en el texto
-        shotsText.text = "Balas: "+ currentShots.ToString();
+        // Esta lógica ya estaba, solo necesita la asignación en el Inspector
+        foreach (Transform child in shotsPanel1)
+        {
+            Destroy(child.gameObject);
+        }
 
-        // Variables para el cálculo de la posición de las balas
-        float yOffset = 0f; // Distancia vertical para las nuevas filas de balas
+        shotsText.text = "Balas: " + currentShots.ToString();
 
-        // Instanciamos un icono de bala para cada bala restante
+        // ===== CORRECCIÓN AQUÍ =====
+        // Añadimos la actualización para shotsText1
+        if (shotsText1 != null)
+        {
+            shotsText1.text = "Balas: " + currentShots.ToString();
+        }
+        // ===========================
+
+        float yOffset = 0f;
+
         for (int i = 0; i < currentShots; i++)
         {
-            // Instanciamos el prefab de la bala en el panel
             GameObject shotIcon = Instantiate(shotIconPrefab, shotsPanel);
 
-            // Calculamos la posición de cada bala con un pequeño espacio entre ellas
-            float xOffset = (i % maxIconsPerRow) * iconSpacing; // Separación en el eje X
-            if (i % maxIconsPerRow == 0 && i != 0)  // Si alcanzamos el límite de íconos por fila, hacemos salto de línea
+            // Esta lógica ya estaba, solo necesita la asignación en el Inspector
+            GameObject shotIcon1 = Instantiate(shotIconPrefab, shotsPanel1);
+
+            float xOffset = (i % maxIconsPerRow) * iconSpacing;
+            if (i % maxIconsPerRow == 0 && i != 0)
             {
-                yOffset -= lineSpacing; // Ajustamos la distancia vertical entre filas
+                yOffset -= lineSpacing;
             }
-            shotIcon.transform.localPosition = new Vector3(xOffset, yOffset, 0); // Posicionamos con desplazamiento en X y Y
+            shotIcon.transform.localPosition = new Vector3(xOffset, yOffset, 0);
+
+            // Esta lógica ya estaba, solo necesita la asignación en el Inspector
+            shotIcon1.transform.localPosition = new Vector3(xOffset, yOffset, 0);
         }
 
         if (currentShots == 0)
         {
-            LoadScene();
+            StartCoroutine(DelayedSceneLoad());
         }
     }
 
-    // Método para actualizar el texto del puntaje
     public void UpdateScoreText()
     {
         if (scoreText != null && pointCounter != null)
         {
             scoreText.text = "Puntos: " + pointCounter.GetPoints();
+
+            if (scoreText1 != null)
+            {
+                scoreText1.text = "Puntos: " + pointCounter.GetPoints();
+            }
         }
+    }
+
+    private IEnumerator DelayedSceneLoad()
+    {
+        yield return new WaitForSeconds(delayBeforeSceneLoad);
+        LoadScene();
     }
 
     public void LoadScene()
     {
         PlayerPrefs.SetInt("FinalScore", pointCounter.GetPoints());
-        PlayerPrefs.SetString("NextScene", sceneToLoad); // Guarda el destino
-        SceneManager.LoadScene("LoadingScene"); // Va a la escena de carga
+        PlayerPrefs.SetString("NextScene", sceneToLoad);
+        SceneManager.LoadScene("LoadingScene");
     }
 }

@@ -12,29 +12,35 @@ EditorBuildSettings:
     path: Assets/Scenes/LoadingScene.unity
     guid: e64e94b7f1142f14ea4ee0a4aaec67bf
   - enabled: 1
-    path: Assets/Scenes/DesertMap_Level1.unity
-    guid: 784692a3e104f4d4daec5db07b23ce7b
-  - enabled: 0
-    path: Assets/Scenes/DesertMap_Level2.unity
-    guid: c6466bb54c1dc344d926c89f88057d85
-  - enabled: 0
-    path: Assets/Scenes/DesertMap_Level3.unity
-    guid: 405452df15c9b0b47a12f4e09d7ae9b5
-  - enabled: 1
     path: Assets/Scenes/Level_Tutorial.unity
     guid: 7838580d1f1c58b4888e5c94ddb772f8
-  - enabled: 0
-    path: Assets/Scenes/Ranking.unity
-    guid: b8dcb3a4c8195e64ab77fba11dc138f2
   - enabled: 1
-    path: Assets/Scenes/RankingScene.unity
-    guid: 213700a3d4bac47468a3b9a826692f89
+    path: Assets/Scenes/DesertMap_Level1.unity
+    guid: 784692a3e104f4d4daec5db07b23ce7b
+  - enabled: 1
+    path: Assets/Scenes/DesertMap_Level2.unity
+    guid: 83b9f4150e122b64fb7d069e73d775a6
+  - enabled: 1
+    path: Assets/Scenes/DesertMap_Level3.unity
+    guid: 2294cff4059d9044ca44b4ac62000abe
+  - enabled: 1
+    path: Assets/Scenes/ForestMap_Level1.unity
+    guid: 8ea8c015a24512049ae4e22c0d480e9e
+  - enabled: 1
+    path: Assets/Scenes/StadiumMap_Level1.unity
+    guid: 621c32a752be287439d08f023e9b763e
+  - enabled: 1
+    path: Assets/Scenes/StadiumMap_Level2.unity
+    guid: a085e46cd208e234eba081359bea711d
+  - enabled: 1
+    path: Assets/Scenes/StadiumMap_Level3.unity
+    guid: 3937a635870ffee46ba1ca33910ac10b
   - enabled: 1
     path: Assets/Scenes/ScoreScene.unity
     guid: c1e6a876ab9b03f43bcf30a1402c5813
   - enabled: 1
-    path: Assets/Scenes/ForestMap_Level1.unity
-    guid: 8ea8c015a24512049ae4e22c0d480e9e
+    path: Assets/Scenes/RankingScene.unity
+    guid: 213700a3d4bac47468a3b9a826692f89
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 9f7e1e7560fdd3948b9546163ba15aea, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
