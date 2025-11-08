@@ -5801,8 +5801,6 @@ MonoBehaviour:
   componentesAdicionalesParaModificarWidth:
   - {fileID: 6519657893074228781}
   - {fileID: 1512375672404521187}
-  - {fileID: 4617495776836210387}
-  - {fileID: 3453009505719590126}
   textoDescriptivo: {fileID: 8195617127819567066}
   componenteTamanoPosicionVariable: {fileID: 2876142045782466304}
   aumentoAnchoVariable: -20

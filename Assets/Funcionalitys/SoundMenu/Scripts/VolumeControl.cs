@@ -1,127 +1,106 @@
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class VolumeControl : MonoBehaviour
 {
     [Header("Audio Sources")]
-    [Tooltip("AudioSource para Música/Volumen General")]
-    [SerializeField] private AudioSource musicAudioSource;
+    [SerializeField] private List<AudioSource> musicAudioSources = new List<AudioSource>();
+    [SerializeField] private List<AudioSource> soundEffectAudioSources = new List<AudioSource>();
 
-    [Tooltip("AudioSource para Efectos de Sonido 1")]
-    [SerializeField] private AudioSource soundEffectAudioSource1;
+    [Header("UI Sliders (Opcional, solo para Sync)")]
+    // Esta lista AHORA es solo para sincronizar sliders entre sí,
+    // pero el control principal viene de AudioSettingsView.
+    [SerializeField] private List<Slider> musicSliders = new List<Slider>();
+    [SerializeField] private List<Slider> soundSliders = new List<Slider>();
 
-    [Tooltip("AudioSource para Efectos de Sonido 2")]
-    [SerializeField] private AudioSource soundEffectAudioSource2;
-
-    [Tooltip("AudioSource para Efectos de Sonido 2")]
-    [SerializeField] private AudioSource soundEffectAudioSource3;
-
-    [Header("UI Sliders")]
-    [Tooltip("Slider para controlar el volumen de la Música")]
-    [SerializeField] private Slider volumeSlider;
-    [SerializeField] private Slider volumeSlider1;
-
-    [Tooltip("Slider para controlar el volumen de los Efectos de Sonido")]
-    [SerializeField] private Slider soundSlider;
-    [SerializeField] private Slider soundSlider1;
-
-    private const string VolumeKey = "Volume";
-    private const string SoundKey = "Sound";
-
-    [Header("Opciones")]
+    [Header("Valores por Defecto")]
     [Range(0f, 1f)]
     [SerializeField] private float defaultVolume = 0.5f;
     [Range(0f, 1f)]
     [SerializeField] private float defaultSound = 0.5f;
 
-    private void Awake()
+    private const string VolumeKey = "Volume";
+    private const string SoundKey = "Sound";
+
+    public float CurrentMusicVolume { get; private set; }
+    public float CurrentSoundVolume { get; private set; }
+
+    void Start()
     {
-        // 1) Cargar volúmenes guardados (o usar defaults)
+        // NO nos suscribimos a los sliders aquí.
+        // La UI (AudioSettingsView) nos controlará.
+
+        // Cargar el valor guardado de PlayerPrefs al iniciar.
         float musicVol = PlayerPrefs.GetFloat(VolumeKey, defaultVolume);
         float soundVol = PlayerPrefs.GetFloat(SoundKey, defaultSound);
 
-        // 2) Aplicarlos a los AudioSources correspondientes
+        // Aplicar estos valores como estado inicial
+        SetValues(musicVol, soundVol);
+    }
+
+    // --- FUNCIONES DE PREVIEW (Llamadas por AudioSettingsView) ---
+
+    /// <summary>
+    /// Aplica un cambio de volumen de música en tiempo real.
+    /// </summary>
+    public void PreviewMusicVolume(float previewValue)
+    {
+        ApplyMusicVolume(previewValue);
+        SyncSliders(musicSliders, previewValue);
+    }
+
+    /// <summary>
+    /// Aplica un cambio de volumen de sonido en tiempo real.
+    /// </summary>
+    public void PreviewSoundVolume(float previewValue)
+    {
+        ApplySoundVolume(previewValue);
+        SyncSliders(soundSliders, previewValue);
+    }
+
+    // --- FUNCIÓN DE CONTROL (Llamada por AudioSettingsView) ---
+
+    /// <summary>
+    /// Método PÚBLICO para forzar a este control a mostrar un valor (Reset).
+    /// </summary>
+    public void SetValues(float musicVol, float soundVol)
+    {
+        CurrentMusicVolume = musicVol;
+        CurrentSoundVolume = soundVol;
+
         ApplyMusicVolume(musicVol);
         ApplySoundVolume(soundVol);
 
-        // 3) Sincronizar los sliders (si existen), sin disparar callbacks
-        ConfigureSlider(volumeSlider, musicVol, OnMusicSliderChanged);
-        ConfigureSlider(volumeSlider1, musicVol, OnMusicSliderChanged);
-        ConfigureSlider(soundSlider, soundVol, OnSoundSliderChanged);
-        ConfigureSlider(soundSlider1, soundVol, OnSoundSliderChanged);
+        SyncSliders(musicSliders, musicVol);
+        SyncSliders(soundSliders, soundVol);
     }
 
-    private void ConfigureSlider(Slider slider, float initialValue, UnityEngine.Events.UnityAction<float> callback)
-    {
-        if (slider != null)
-        {
-            slider.minValue = 0f;
-            slider.maxValue = 1f;
-            slider.SetValueWithoutNotify(initialValue);
-            slider.onValueChanged.AddListener(callback);
-        }
-    }
-
-    private void OnDestroy()
-    {
-        if (volumeSlider != null)
-            volumeSlider.onValueChanged.RemoveListener(OnMusicSliderChanged);
-        if (soundSlider != null)
-            soundSlider.onValueChanged.RemoveListener(OnSoundSliderChanged);
-    }
-
-    private void OnMusicSliderChanged(float v)
-    {
-        // Aplicar volumen al AudioSource de Música
-        ApplyMusicVolume(v);
-
-        // Guardar en PlayerPrefs
-        PlayerPrefs.SetFloat(VolumeKey, v);
-        PlayerPrefs.Save();
-    }
-
-    private void OnSoundSliderChanged(float v)
-    {
-        // Aplicar volumen a los AudioSources de Efectos de Sonido
-        ApplySoundVolume(v);
-
-        // Guardar en PlayerPrefs
-        PlayerPrefs.SetFloat(SoundKey, v);
-        PlayerPrefs.Save();
-    }
-
+    // --- Métodos Internos ---
     private void ApplyMusicVolume(float v)
     {
-        if (musicAudioSource != null)
-            musicAudioSource.volume = v;
+        foreach (AudioSource source in musicAudioSources)
+        {
+            if (source != null) source.volume = v;
+        }
     }
 
     private void ApplySoundVolume(float v)
     {
-        if (soundEffectAudioSource1 != null)
-            soundEffectAudioSource1.volume = v;
-
-        if (soundEffectAudioSource2 != null)
-            soundEffectAudioSource2.volume = v;
-        
-        if (soundEffectAudioSource3 != null)
-            soundEffectAudioSource2.volume = v;
+        foreach (AudioSource source in soundEffectAudioSources)
+        {
+            if (source != null) source.volume = v;
+        }
     }
 
-    // (Opcional) Forzar a que se re-aplique desde PlayerPrefs en runtime.
-    public void ApplyFromPrefs()
+    private void SyncSliders(List<Slider> sliders, float value)
     {
-        float musicVol = PlayerPrefs.GetFloat(VolumeKey, defaultVolume);
-        float soundVol = PlayerPrefs.GetFloat(SoundKey, defaultSound);
-
-        ApplyMusicVolume(musicVol);
-        ApplySoundVolume(soundVol);
-
-        if (volumeSlider != null)
-            volumeSlider.SetValueWithoutNotify(musicVol);
-
-        if (soundSlider != null)
-            soundSlider.SetValueWithoutNotify(soundVol);
+        foreach (Slider s in sliders)
+        {
+            if (s != null)
+            {
+                s.SetValueWithoutNotify(value);
+            }
+        }
     }
 }

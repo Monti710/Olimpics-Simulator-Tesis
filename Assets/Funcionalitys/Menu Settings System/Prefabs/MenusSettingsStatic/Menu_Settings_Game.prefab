@@ -2920,6 +2920,7 @@ MonoBehaviour:
   cancelButton: {fileID: 1022206096295153779}
   confirmButton: {fileID: 0}
   cancelConfirmationButton: {fileID: 0}
+  brightnessControl: {fileID: 0}
   MenuConfirmation: Confirmation
   MenuInitial: Musica
   MenuSettings: Table
@@ -6197,8 +6198,6 @@ MonoBehaviour:
   componentesAdicionalesParaModificarWidth:
   - {fileID: 6414615749152226988}
   - {fileID: 7119501277599524221}
-  - {fileID: 2599755162970955158}
-  - {fileID: 4443930018220484216}
   textoDescriptivo: {fileID: 3900359344523814393}
   componenteTamanoPosicionVariable: {fileID: 1308117140542425275}
   aumentoAnchoVariable: -20

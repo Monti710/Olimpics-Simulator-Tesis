@@ -26,12 +26,16 @@ public class ScoreboardDisplay : MonoBehaviour
         finalScore = PlayerPrefs.GetInt("FinalScore", 0);
         finalScoreText.text = "Tu Puntaje: " + finalScore;
 
+        // Mostrar los puntajes cargados según el nivel actual
         MostrarListaDePuntajes();
     }
 
     void MostrarListaDePuntajes()
     {
-        ScoreList scoreList = LocalScoreManager.LoadScores();
+        string levelScene = PlayerPrefs.GetString("LevelScene", "DesertMap_Level1");  // Obtener el valor de PlayerPrefs
+        string path = GetPathForLevel(levelScene);  // Obtener la ruta del archivo correspondiente
+
+        ScoreList scoreList = LocalScoreManager.LoadScores(path);
 
         // Caso: JSON vacío o inexistente
         if (scoreList == null || scoreList.scores == null || scoreList.scores.Count == 0)
@@ -56,6 +60,7 @@ public class ScoreboardDisplay : MonoBehaviour
             ScoreData data = listaOrdenada[i];
             string fecha = string.IsNullOrEmpty(data.date) ? "sin fecha" : data.date;
 
+            // Resaltar el último puntaje agregado
             if (data.playerName == ultimoAgregado.playerName && data.score == ultimoAgregado.score)
             {
                 sb.AppendLine($"<color=#{ColorUtility.ToHtmlStringRGB(highlightColor)}><b>{i + 1}. {data.playerName} - {data.score} puntos - {fecha}</b></color>");
@@ -103,4 +108,11 @@ public class ScoreboardDisplay : MonoBehaviour
 
         Debug.Log($"📜 Scroll automático al puntaje #{index + 1} (posición {normalizedPos:F2})");
     }
+
+    // Obtener la ruta del archivo de puntajes según el nivel/escena
+    private string GetPathForLevel(string levelScene)
+    {
+        return Application.persistentDataPath + "/" + levelScene + "_scores.json";
+    }
+
 }

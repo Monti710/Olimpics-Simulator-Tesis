@@ -3,19 +3,16 @@ using UnityEngine;
 
 public static class LocalScoreManager
 {
-    private static string path = Application.persistentDataPath + "/scores.json";
-
-    public static void SaveScore(ScoreData newScore)
+    public static void SaveScore(ScoreData newScore, string path)
     {
-        ScoreList scoreList = LoadScores();
-
+        ScoreList scoreList = LoadScores(path);
         scoreList.scores.Add(newScore);
 
         string json = JsonUtility.ToJson(scoreList, true);
         File.WriteAllText(path, json);
     }
 
-    public static ScoreList LoadScores()
+    public static ScoreList LoadScores(string path)
     {
         if (!File.Exists(path))
         {
@@ -25,10 +22,10 @@ public static class LocalScoreManager
         string json = File.ReadAllText(path);
         return JsonUtility.FromJson<ScoreList>(json);
     }
-    public static void OverwriteScores(ScoreList updatedList)
+
+    public static void OverwriteScores(ScoreList updatedList, string path)
     {
         string json = JsonUtility.ToJson(updatedList, true);
         File.WriteAllText(path, json);
     }
-
 }

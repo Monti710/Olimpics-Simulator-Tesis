@@ -224,7 +224,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2000985792213292833, guid: cf00662847f3a574caf08e5c35a49166, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3728251868312042353, guid: cf00662847f3a574caf08e5c35a49166, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2501,8 +2501,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 01:32
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 73d224cbbda310f43b4735148916949b, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 73d224cbbda310f43b4735148916949b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3828,7 +3828,7 @@ PrefabInstance:
       objectReference: {fileID: 1973227575}
     - target: {fileID: 8883678566926472107, guid: b521175c3b0704742bfd98f7cef97c0c, type: 3}
       propertyPath: defaultSound
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8883678566926472107, guid: b521175c3b0704742bfd98f7cef97c0c, type: 3}
       propertyPath: soundSlider1
@@ -3840,7 +3840,7 @@ PrefabInstance:
       objectReference: {fileID: 160666536}
     - target: {fileID: 8883678566926472107, guid: b521175c3b0704742bfd98f7cef97c0c, type: 3}
       propertyPath: defaultVolume
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8883678566926472107, guid: b521175c3b0704742bfd98f7cef97c0c, type: 3}
       propertyPath: volumeSlider1
@@ -3850,6 +3850,10 @@ PrefabInstance:
       propertyPath: musicAudioSource
       value: 
       objectReference: {fileID: 481492723}
+    - target: {fileID: 8883678566926472107, guid: b521175c3b0704742bfd98f7cef97c0c, type: 3}
+      propertyPath: musicSliders.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8883678566926472107, guid: b521175c3b0704742bfd98f7cef97c0c, type: 3}
       propertyPath: soundEffectAudioSource1
       value: 
@@ -3862,6 +3866,50 @@ PrefabInstance:
       propertyPath: soundEffectAudioSource3
       value: 
       objectReference: {fileID: 1892971838}
+    - target: {fileID: 8883678566926472107, guid: b521175c3b0704742bfd98f7cef97c0c, type: 3}
+      propertyPath: soundSliders.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8883678566926472107, guid: b521175c3b0704742bfd98f7cef97c0c, type: 3}
+      propertyPath: 'musicSliders.Array.data[0]'
+      value: 
+      objectReference: {fileID: 160666536}
+    - target: {fileID: 8883678566926472107, guid: b521175c3b0704742bfd98f7cef97c0c, type: 3}
+      propertyPath: 'musicSliders.Array.data[1]'
+      value: 
+      objectReference: {fileID: 504702799}
+    - target: {fileID: 8883678566926472107, guid: b521175c3b0704742bfd98f7cef97c0c, type: 3}
+      propertyPath: 'soundSliders.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1973227575}
+    - target: {fileID: 8883678566926472107, guid: b521175c3b0704742bfd98f7cef97c0c, type: 3}
+      propertyPath: 'soundSliders.Array.data[1]'
+      value: 
+      objectReference: {fileID: 864350885}
+    - target: {fileID: 8883678566926472107, guid: b521175c3b0704742bfd98f7cef97c0c, type: 3}
+      propertyPath: musicAudioSources.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8883678566926472107, guid: b521175c3b0704742bfd98f7cef97c0c, type: 3}
+      propertyPath: 'musicAudioSources.Array.data[0]'
+      value: 
+      objectReference: {fileID: 481492723}
+    - target: {fileID: 8883678566926472107, guid: b521175c3b0704742bfd98f7cef97c0c, type: 3}
+      propertyPath: soundEffectAudioSources.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8883678566926472107, guid: b521175c3b0704742bfd98f7cef97c0c, type: 3}
+      propertyPath: 'soundEffectAudioSources.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1892971838}
+    - target: {fileID: 8883678566926472107, guid: b521175c3b0704742bfd98f7cef97c0c, type: 3}
+      propertyPath: 'soundEffectAudioSources.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1947336641}
+    - target: {fileID: 8883678566926472107, guid: b521175c3b0704742bfd98f7cef97c0c, type: 3}
+      propertyPath: 'soundEffectAudioSources.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1800516135}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 4386154062482486458, guid: b521175c3b0704742bfd98f7cef97c0c, type: 3}
@@ -3874,6 +3922,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6678651438650735794, guid: b521175c3b0704742bfd98f7cef97c0c, type: 3}
   m_PrefabInstance: {fileID: 1601393321}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1601393323 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8883678566926472107, guid: b521175c3b0704742bfd98f7cef97c0c, type: 3}
+  m_PrefabInstance: {fileID: 1601393321}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1637651dbd81c84b9bbec2c768a2f71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1656593990
 GameObject:
   m_ObjectHideFlags: 0
@@ -4939,9 +4998,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54ac046f8b8c6044a808ae54d9cb9791, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sliderBrillo: {fileID: 1580985223}
-  sliderBrillo2: {fileID: 1694347606}
   luzPrincipal: {fileID: 1656593991}
+  brightnessSliders:
+  - {fileID: 1694347606}
+  - {fileID: 1580985223}
+  defaultBrightness: 0
 --- !u!4 &2074914054 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9097352466795266561, guid: e0ca713b44f670f4d9fd95df2e688e76, type: 3}
@@ -6910,6 +6971,10 @@ PrefabInstance:
       propertyPath: userMenuManagers
       value: 
       objectReference: {fileID: 314091805}
+    - target: {fileID: 1145437221977460663, guid: dda96abf1f4f34047a7a26f5a9dbd649, type: 3}
+      propertyPath: brightnessControl
+      value: 
+      objectReference: {fileID: 2074914053}
     - target: {fileID: 1145437221977460663, guid: dda96abf1f4f34047a7a26f5a9dbd649, type: 3}
       propertyPath: cancelConfirmationButton
       value: 
@@ -10261,6 +10326,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1661093725}
     - target: {fileID: 9048254920383682572, guid: 7fa50bdb351a2e7488c658149ef49777, type: 3}
+      propertyPath: volumeControl
+      value: 
+      objectReference: {fileID: 1601393323}
+    - target: {fileID: 9048254920383682572, guid: 7fa50bdb351a2e7488c658149ef49777, type: 3}
       propertyPath: userMenuManagers
       value: 
       objectReference: {fileID: 314091805}
@@ -10353,6 +10422,10 @@ PrefabInstance:
       propertyPath: userMenuManagers
       value: 
       objectReference: {fileID: 314091805}
+    - target: {fileID: 6199936604651924448, guid: 6c1c2c6cd13ed6f438341e1bb47649d6, type: 3}
+      propertyPath: brightnessControl
+      value: 
+      objectReference: {fileID: 2074914053}
     - target: {fileID: 6199936604651924448, guid: 6c1c2c6cd13ed6f438341e1bb47649d6, type: 3}
       propertyPath: cancelConfirmationButton
       value: 
@@ -10497,6 +10570,10 @@ PrefabInstance:
       propertyPath: confirmButton
       value: 
       objectReference: {fileID: 1258938382}
+    - target: {fileID: 7375296167238974574, guid: 044470071ff63604eaa72159b1768fbc, type: 3}
+      propertyPath: volumeControl
+      value: 
+      objectReference: {fileID: 1601393323}
     - target: {fileID: 7375296167238974574, guid: 044470071ff63604eaa72159b1768fbc, type: 3}
       propertyPath: userMenuManagers
       value: 

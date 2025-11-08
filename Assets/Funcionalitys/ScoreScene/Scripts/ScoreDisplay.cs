@@ -46,8 +46,17 @@ public class ScoreDisplay : MonoBehaviour
             return;
         }
 
-        // Cargar la lista de puntajes
-        ScoreList list = LocalScoreManager.LoadScores();
+        string levelScene = PlayerPrefs.GetString("LevelScene", "DesertMap_Level1");  // Obtener el valor de PlayerPrefs
+
+        // Llamar al método correspondiente para guardar el puntaje en la tabla adecuada
+        SaveScoreForLevel(levelScene, playerName);
+    }
+
+    private void SaveScoreForLevel(string levelScene, string playerName)
+    {
+        // Crear el nombre del archivo correspondiente
+        string path = GetPathForLevel(levelScene);
+        ScoreList list = LocalScoreManager.LoadScores(path);
 
         // Si no hay puntajes guardados, crear el primero
         if (list == null || list.scores.Count == 0)
@@ -58,7 +67,7 @@ public class ScoreDisplay : MonoBehaviour
                 score = finalScore,
                 date = DateTime.Now.ToString("yyyy-MM-dd HH:mm")
             };
-            LocalScoreManager.SaveScore(newScore);
+            LocalScoreManager.SaveScore(newScore, path);
         }
         else
         {
@@ -68,7 +77,7 @@ public class ScoreDisplay : MonoBehaviour
             if (existing != null)
             {
                 existing.playerName = playerName;
-                LocalScoreManager.OverwriteScores(list);
+                LocalScoreManager.OverwriteScores(list, path);
             }
             else
             {
@@ -78,16 +87,15 @@ public class ScoreDisplay : MonoBehaviour
                     score = finalScore,
                     date = DateTime.Now.ToString("yyyy-MM-dd HH:mm")
                 };
-                LocalScoreManager.SaveScore(newScore);
+                LocalScoreManager.SaveScore(newScore, path);
             }
         }
+    }
 
-        // Activar/desactivar objetos
-        if (objectToDeactivate1 != null) objectToDeactivate1.SetActive(false);
-        if (objectToDeactivate2 != null) objectToDeactivate2.SetActive(false);
-        if (objectToActivate != null) objectToActivate.SetActive(true);
-
-        Debug.Log("Puntaje guardado correctamente en JSON.");
+    private string GetPathForLevel(string levelScene)
+    {
+        // Aquí se puede configurar un mapeo para los diferentes mapas y niveles
+        return Application.persistentDataPath + "/" + levelScene + "_scores.json";
     }
 
     private IEnumerator ShowWarning()

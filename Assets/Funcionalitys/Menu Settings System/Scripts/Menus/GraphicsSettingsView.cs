@@ -3,25 +3,27 @@ using UnityEngine.UI;
 
 public class GraphicsSettingsView : MonoBehaviour
 {
+    [Header("UI (Lectura y Escritura)")]
     public Slider brightnessSlider;
+
+    [Header("Botones")]
     public Button saveButton;
     public Button cancelButton;
-
     public Button confirmButton;
     public Button cancelConfirmationButton;
 
-    // 2. Campos de texto para las claves de los menús
+    [Header("Sistema de Preview")]
+    [Tooltip("Arrastra aquí el objeto que tiene el script ControlBrilloYOscuridadURPModern")]
+    public ControlBrilloYOscuridadURPModern brightnessControl; // <-- Referencia
+
+    [Header("Navegación de Menú")]
     public string MenuConfirmation;
     public string MenuInitial;
     public string MenuSettings;
-
-    // ⭐ 3. SELECTOR Y REFERENCIAS DE MANAGERS ⭐
-    [Header("Menu Manager Selection")]
     public MenuManagerType activeManagerType = MenuManagerType.UserMenuManagers;
-    public UserMenuManagers userMenuManagers; // Referencia al primer script gestor
-    public MenuManager menuManager;           // Referencia al segundo script gestor
+    public UserMenuManagers userMenuManagers;
+    public MenuManager menuManager;
 
-    // Estos deciden a qué gestor llamar basándose en el enum
     private void CallShow(string key)
     {
         if (activeManagerType == MenuManagerType.UserMenuManagers && userMenuManagers != null)
@@ -61,74 +63,83 @@ public class GraphicsSettingsView : MonoBehaviour
         saveButton.onClick.AddListener(OnSaveButtonClicked);
         cancelButton.onClick.AddListener(OnCancelButtonClicked);
 
-        // Los listeners llaman a la función de ACTUALIZACIÓN EN MEMORIA
+        // El listener AHORA llama a preview Y buffer
         brightnessSlider.onValueChanged.AddListener(OnBrightnessChanged);
 
-        // Listeners de confirmación
         confirmButton.onClick.AddListener(OnConfirmChange);
         cancelConfirmationButton.onClick.AddListener(OnCancelChange);
-
     }
 
     void OnEnable()
     {
-        // Sincroniza la UI al abrir el menú para reflejar el buffer actual
         RefreshUIFromSettings();
     }
 
+    // --- Método de Cambio (PREVIEW + BUFFER) ---
+
     public void OnBrightnessChanged(float newBrightness)
     {
-        // Carga los otros valores del buffer de memoria para mantener la consistencia
+        // 1. Aplicar la VISTA PREVIA
+        if (brightnessControl != null)
+        {
+            brightnessControl.PreviewBrightness(newBrightness);
+        }
+
+        // 2. Actualizar el BUFFER (tu lógica original)
         float volume = SettingsManager.Instance.CurrentVolume;
         float sound = SettingsManager.Instance.CurrentSound;
         bool handedness = SettingsManager.Instance.CurrentIsLeftHanded;
-        bool bulletMark = SettingsManager.Instance.CurrentBulletMark;
-        bool autoPointer = SettingsManager.Instance.CurrentAutoPointer;
-        bool userInterface = SettingsManager.Instance.CurrentUserInterface;
-        bool visualObjects = SettingsManager.Instance.CurrentVisualObjects;
+        //... (etc.)
 
-        // Actualiza el buffer en memoria y aplica los cambios al juego
-        SettingsManager.Instance.UpdateInMemorySettings(volume, sound, newBrightness, handedness, bulletMark, autoPointer, userInterface, visualObjects);
+        SettingsManager.Instance.UpdateInMemorySettings(volume, sound, newBrightness, handedness,
+            SettingsManager.Instance.CurrentBulletMark,
+            SettingsManager.Instance.CurrentAutoPointer,
+            SettingsManager.Instance.CurrentUserInterface,
+            SettingsManager.Instance.CurrentVisualObjects);
     }
 
-    // --- Lógica de Botones (GUARDA EN DISCO O CANCELA) ---
+    // --- Lógica de Botones ---
 
     private void OnSaveButtonClicked()
     {
-
-        // Si hay lógica de confirmación (cambio de mano)
+        // El buffer ya está actualizado
         if (SettingsManager.Instance.CurrentIsLeftHanded != (PlayerPrefs.GetInt("IsLeftHanded", 0) == 1))
-        {
             CallShow(MenuConfirmation);
-        }
         else
         {
-            SaveSettingsToManager();
+            SaveSettingsToManager(); // Solo guarda
             CallShow(MenuSettings);
         }
     }
 
     private void OnCancelButtonClicked()
     {
-        // Restauramos el buffer de memoria a los últimos valores GUARDADOS al disco.
-        SettingsManager.Instance.LoadAndApplySettings();
-
-        // Refrescar la UI para reflejar los valores restaurados
-        RefreshUIFromSettings();
+        SettingsManager.Instance.LoadAndApplySettings(); // Carga desde disco al buffer
+        RefreshUIFromSettings(); // Refresca UI y Preview
         gameObject.SetActive(false);
         CallShow(MenuSettings);
     }
 
-    // --- Método de Sincronización ---
+    // --- Método de Sincronización (Reset) ---
     public void RefreshUIFromSettings()
     {
-        // Usamos el Singleton para obtener los valores actuales (del buffer de memoria)
-        brightnessSlider.value = SettingsManager.Instance.CurrentBrightness;
+        if (SettingsManager.Instance == null) return;
+
+        float brightness = SettingsManager.Instance.CurrentBrightness;
+
+        // 1. Actualizar slider (sin disparar evento)
+        if (brightnessSlider != null)
+            brightnessSlider.SetValueWithoutNotify(brightness);
+
+        // 2. Forzar al sistema de preview a resetearse
+        if (brightnessControl != null)
+        {
+            brightnessControl.SetValue(brightness);
+        }
     }
 
     private void SaveSettingsToManager()
     {
-        // El Manager ya tiene el estado más reciente, solo le pedimos que guarde a disco.
         SettingsManager.Instance.SaveToDiskAndApply();
         gameObject.SetActive(false);
     }
@@ -141,9 +152,7 @@ public class GraphicsSettingsView : MonoBehaviour
 
     private void OnCancelChange()
     {
-        // Restaurar los valores del buffer de memoria a los últimos valores GUARDADOS al disco
         SettingsManager.Instance.LoadAndApplySettings();
-
         RefreshUIFromSettings();
         CallShow(MenuInitial);
     }
