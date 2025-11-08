@@ -45562,7 +45562,7 @@ MonoBehaviour:
   visualObjectsSwitcher: {fileID: 2015327169}
   userInterfaceStatusText: {fileID: 990479862}
   visualObjectsStatusText: {fileID: 1250050955}
-  userInterfaceTargetObject: {fileID: 1133975768}
+  userInterfaceTargetObject: {fileID: 274781352}
   visualObjectsTargetObject: {fileID: 1915391335}
 --- !u!1 &1819529412
 GameObject:
@@ -53052,7 +53052,7 @@ MonoBehaviour:
   visualObjectsSwitcher: {fileID: 2123738278}
   userInterfaceStatusText: {fileID: 221463592}
   visualObjectsStatusText: {fileID: 1668701814}
-  userInterfaceTargetObject: {fileID: 1133975768}
+  userInterfaceTargetObject: {fileID: 274781352}
   visualObjectsTargetObject: {fileID: 1915391335}
 --- !u!1 &2100030512
 GameObject:
@@ -54103,7 +54103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ba3b591727187b45871d86b7ab49448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userInterfaceTargetObject: {fileID: 1133975768}
+  userInterfaceTargetObject: {fileID: 274781352}
   visualObjectsTargetObject: {fileID: 1915391335}
   bulletMarkTargetComponent: {fileID: 4793898515227420924, guid: d1254097a883eb044bb7ee5bb7407eee, type: 3}
   autoPointerLine1: {fileID: 1980093169}
