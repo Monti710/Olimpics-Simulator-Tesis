@@ -50,6 +50,9 @@ public class ScoreDisplay : MonoBehaviour
 
         // Llamar al método correspondiente para guardar el puntaje en la tabla adecuada
         SaveScoreForLevel(levelScene, playerName);
+        objectToDeactivate1.SetActive(false);
+        objectToDeactivate2.SetActive(false);
+        objectToActivate.SetActive(true);
     }
 
     private void SaveScoreForLevel(string levelScene, string playerName)

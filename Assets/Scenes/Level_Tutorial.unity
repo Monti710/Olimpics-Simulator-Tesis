@@ -14218,6 +14218,7 @@ MonoBehaviour:
   cancelButton: {fileID: 523010621}
   confirmButton: {fileID: 465383061}
   cancelConfirmationButton: {fileID: 813353815}
+  brightnessControl: {fileID: 0}
   MenuConfirmation: Confirmation
   MenuInitial: Musica
   MenuSettings: Table
@@ -23596,6 +23597,7 @@ MonoBehaviour:
   cancelButton: {fileID: 1025779963}
   confirmButton: {fileID: 1759297356}
   cancelConfirmationButton: {fileID: 313523920}
+  volumeControl: {fileID: 0}
   MenuConfirmation: Menu_Confirmation_User
   MenuInitial: Menu_User_Sound
   MenuSettings: 
@@ -46253,6 +46255,7 @@ MonoBehaviour:
   cancelButton: {fileID: 320776427}
   confirmButton: {fileID: 465383061}
   cancelConfirmationButton: {fileID: 813353815}
+  volumeControl: {fileID: 0}
   MenuConfirmation: Confirmation
   MenuInitial: Musica
   MenuSettings: Table
@@ -52463,6 +52466,7 @@ MonoBehaviour:
   cancelButton: {fileID: 925402437}
   confirmButton: {fileID: 1759297356}
   cancelConfirmationButton: {fileID: 313523920}
+  brightnessControl: {fileID: 0}
   MenuConfirmation: Menu_Confirmation_User
   MenuInitial: Menu_User_Game
   MenuSettings: 

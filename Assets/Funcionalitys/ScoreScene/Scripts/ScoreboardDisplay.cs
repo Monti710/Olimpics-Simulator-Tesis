@@ -34,7 +34,7 @@ public class ScoreboardDisplay : MonoBehaviour
     {
         string levelScene = PlayerPrefs.GetString("LevelScene", "DesertMap_Level1");  // Obtener el valor de PlayerPrefs
         string path = GetPathForLevel(levelScene);  // Obtener la ruta del archivo correspondiente
-
+        Debug.Log(path);
         ScoreList scoreList = LocalScoreManager.LoadScores(path);
 
         // Caso: JSON vacío o inexistente
