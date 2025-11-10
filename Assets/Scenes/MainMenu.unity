@@ -441,6 +441,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1050423391}
+    - target: {fileID: 2516841879532345004, guid: 78b3dad6f0ba0cd4f9d097f84b287797, type: 3}
+      propertyPath: m_text
+      value: "Direcci\xF3n de la bala, mediante un rastro:"
+      objectReference: {fileID: 0}
     - target: {fileID: 3701745675865672019, guid: 78b3dad6f0ba0cd4f9d097f84b287797, type: 3}
       propertyPath: menuManager
       value: 
@@ -497,6 +501,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5688668079804532551, guid: 78b3dad6f0ba0cd4f9d097f84b287797, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 7478212747273380788, guid: 78b3dad6f0ba0cd4f9d097f84b287797, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -507,7 +515,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7808694588058384564, guid: 78b3dad6f0ba0cd4f9d097f84b287797, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7959274712303371716, guid: 78b3dad6f0ba0cd4f9d097f84b287797, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1309,9 +1317,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1495320690}
     m_Modifications:
+    - target: {fileID: 1622266664630694782, guid: 549cfc1c2e9618a42863bb5265f7eb23, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1622266664630694782, guid: 549cfc1c2e9618a42863bb5265f7eb23, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f8ecc54972abacc46a93f671b0602139, type: 3}
     - target: {fileID: 1770687472212504510, guid: 549cfc1c2e9618a42863bb5265f7eb23, type: 3}
       propertyPath: m_Name
       value: Menu_Confirmation_Settings
+      objectReference: {fileID: 0}
+    - target: {fileID: 1770687472212504510, guid: 549cfc1c2e9618a42863bb5265f7eb23, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424735681343575696, guid: 549cfc1c2e9618a42863bb5265f7eb23, type: 3}
+      propertyPath: m_Text
+      value: "Atr\xE1s"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5118846110398574714, guid: 549cfc1c2e9618a42863bb5265f7eb23, type: 3}
+      propertyPath: m_Text
+      value: "A continuaci\xF3n, tu progreso se \nreiniciar\xE1 al momento de aceptar
+        \nel cambio."
       objectReference: {fileID: 0}
     - target: {fileID: 5502870208602837736, guid: 549cfc1c2e9618a42863bb5265f7eb23, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1966,7 +1995,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5087770890262379166, guid: 34b935ce88059014a94dc646b078956f, type: 3}
       propertyPath: m_Text
-      value: Atras
+      value: "Atr\xE1s"
       objectReference: {fileID: 0}
     - target: {fileID: 5531711817935650348, guid: 34b935ce88059014a94dc646b078956f, type: 3}
       propertyPath: m_Name
@@ -2078,6 +2107,10 @@ PrefabInstance:
       propertyPath: visualObjectsTargetObject
       value: 
       objectReference: {fileID: 1044008622}
+    - target: {fileID: 571275147902871354, guid: 6c1c2c6cd13ed6f438341e1bb47649d6, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 1022206096295153779, guid: 6c1c2c6cd13ed6f438341e1bb47649d6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2122,6 +2155,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2914538070732332796, guid: 6c1c2c6cd13ed6f438341e1bb47649d6, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 3111633161945675257, guid: 6c1c2c6cd13ed6f438341e1bb47649d6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2154,6 +2191,10 @@ PrefabInstance:
       propertyPath: cancelConfirmationButton
       value: 
       objectReference: {fileID: 984388424}
+    - target: {fileID: 6565635264117991751, guid: 6c1c2c6cd13ed6f438341e1bb47649d6, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6694127047819354474, guid: 6c1c2c6cd13ed6f438341e1bb47649d6, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.433
@@ -2753,6 +2794,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Menu_Controls
       objectReference: {fileID: 0}
+    - target: {fileID: 1337704982702022331, guid: 826f6f07e197f1442b26876b643cc07d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4718498565355327460, guid: 826f6f07e197f1442b26876b643cc07d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2857,6 +2902,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1495320690}
     m_Modifications:
+    - target: {fileID: 104645498632016763, guid: 7fa50bdb351a2e7488c658149ef49777, type: 3}
+      propertyPath: m_text
+      value: "M\xFAsica:"
+      objectReference: {fileID: 0}
+    - target: {fileID: 104645498632016763, guid: 7fa50bdb351a2e7488c658149ef49777, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 104645498632016763, guid: 7fa50bdb351a2e7488c658149ef49777, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 104645498632016763, guid: 7fa50bdb351a2e7488c658149ef49777, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 1165740677703129462, guid: 7fa50bdb351a2e7488c658149ef49777, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2897,6 +2958,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1674128377904702072, guid: 7fa50bdb351a2e7488c658149ef49777, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1674128377904702072, guid: 7fa50bdb351a2e7488c658149ef49777, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3440653437323423662, guid: 7fa50bdb351a2e7488c658149ef49777, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2905,10 +2974,50 @@ PrefabInstance:
       propertyPath: m_Name
       value: Menu_Settings_Sound
       objectReference: {fileID: 0}
+    - target: {fileID: 3567907848325439503, guid: 7fa50bdb351a2e7488c658149ef49777, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3699854883428817894, guid: 7fa50bdb351a2e7488c658149ef49777, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3699854883428817894, guid: 7fa50bdb351a2e7488c658149ef49777, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3699854883428817894, guid: 7fa50bdb351a2e7488c658149ef49777, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6930469060015225828, guid: 7fa50bdb351a2e7488c658149ef49777, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7086004219702853935, guid: 7fa50bdb351a2e7488c658149ef49777, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1050423391}
+    - target: {fileID: 7993353176841471351, guid: 7fa50bdb351a2e7488c658149ef49777, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7993353176841471351, guid: 7fa50bdb351a2e7488c658149ef49777, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8160045937734343344, guid: 7fa50bdb351a2e7488c658149ef49777, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8160045937734343344, guid: 7fa50bdb351a2e7488c658149ef49777, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8160045937734343344, guid: 7fa50bdb351a2e7488c658149ef49777, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8292160013769733363, guid: 7fa50bdb351a2e7488c658149ef49777, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -3135,7 +3244,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\xBFEstas seguro de querer\nsalir del juego?"
+  m_Text: "\xBFEst\xE1s seguro de querer\nsalir del juego?"
 --- !u!222 &1681560730
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3355,7 +3464,11 @@ PrefabInstance:
       objectReference: {fileID: 1050423391}
     - target: {fileID: 4443793712917458705, guid: 9d542bd90d001d844bb4fedbd57175fd, type: 3}
       propertyPath: m_Text
-      value: Atras
+      value: "Atr\xE1s"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443793712917458705, guid: 9d542bd90d001d844bb4fedbd57175fd, type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7753412453618387367, guid: 9d542bd90d001d844bb4fedbd57175fd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3808,6 +3921,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6652678236674681461, guid: 362faa9f345b99b409e4a16959e8be3b, type: 3}
+      propertyPath: m_Text
+      value: "Dif\xEDcil"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3915,7 +4032,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5531711817935650348, guid: 34b935ce88059014a94dc646b078956f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6483239410382152082, guid: 34b935ce88059014a94dc646b078956f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3956,6 +4073,10 @@ PrefabInstance:
     - target: {fileID: 6483239410382152082, guid: 34b935ce88059014a94dc646b078956f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8417810095582733637, guid: 34b935ce88059014a94dc646b078956f, type: 3}
+      propertyPath: m_Text
+      value: "Simulador de Tiro Ol\xEDmpico\n"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -4023,6 +4144,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 875398153}
+    - target: {fileID: 7817745049758794945, guid: 7c7a6979b35901548925ce5d2595f494, type: 3}
+      propertyPath: m_Text
+      value: "Atr\xE1s\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 8469415297782871482, guid: 7c7a6979b35901548925ce5d2595f494, type: 3}
       propertyPath: m_Name
       value: Menu_Maps
@@ -4030,6 +4155,10 @@ PrefabInstance:
     - target: {fileID: 8469415297782871482, guid: 7c7a6979b35901548925ce5d2595f494, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8800928765985212506, guid: 7c7a6979b35901548925ce5d2595f494, type: 3}
+      propertyPath: m_Text
+      value: "Selecciona el mapa de tu elecci\xF3n"
       objectReference: {fileID: 0}
     - target: {fileID: 8862094167749712228, guid: 7c7a6979b35901548925ce5d2595f494, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
