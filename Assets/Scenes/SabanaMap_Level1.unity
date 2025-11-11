@@ -3738,8 +3738,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 246714b923bac9549bd4dea9aeb90317, type: 3}
-  m_Resource: {fileID: 8300000, guid: 246714b923bac9549bd4dea9aeb90317, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0c2c6b45d8f654444b9b0be62670d54c, type: 3}
+  m_Resource: {fileID: 8300000, guid: 0c2c6b45d8f654444b9b0be62670d54c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -9318,6 +9318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   luzPrincipal: {fileID: 1906155360}
+  spotLights: []
   brightnessSliders:
   - {fileID: 2049120093}
   - {fileID: 202277944}

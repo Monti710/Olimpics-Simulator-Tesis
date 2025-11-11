@@ -7,18 +7,20 @@ public class ControlBrilloYOscuridadURPModern : MonoBehaviour
 {
     [Header("Referencias de Escena")]
     public Light luzPrincipal;
+    public List<Light> spotLights = new List<Light>();
 
     [Header("UI Sliders (Opcional, solo para Sync)")]
     [SerializeField] private List<Slider> brightnessSliders = new List<Slider>();
 
     [Header("Valores por Defecto")]
-    [Range(-1f, 1f)]
+    [Range(-2f, 2f)]
     [SerializeField] private float defaultBrightness = 0f;
 
     private const string BrightnessKey = "Brightness";
 
     private Color skyOriginal, equatorOriginal, groundOriginal;
     private float intensidadOriginalLuz;
+    private List<float> intensidadesSpotOriginales = new List<float>();
     private bool usaGradient;
 
     public float CurrentBrightness { get; private set; }
@@ -26,16 +28,11 @@ public class ControlBrilloYOscuridadURPModern : MonoBehaviour
     void Start()
     {
         CacheBrightnessOriginals();
-
-        // NO nos suscribimos a los sliders aquí.
-        // La UI (GraphicsSettingsView) nos controlará.
-
         SceneManager.sceneLoaded += OnSceneLoaded;
 
-        // Cargar el valor guardado de PlayerPrefs al iniciar.
-        float brightnessVal = PlayerPrefs.GetFloat(BrightnessKey, defaultBrightness);
-
-        SetValue(brightnessVal);
+        // ✅ Carga el valor del slider, no la intensidad calculada
+        float savedValue = PlayerPrefs.GetFloat(BrightnessKey, defaultBrightness);
+        SetValue(savedValue);
     }
 
     void OnDestroy()
@@ -43,44 +40,47 @@ public class ControlBrilloYOscuridadURPModern : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    // --- FUNCIÓN DE PREVIEW (Llamada por GraphicsSettingsView) ---
-
-    /// <summary>
-    /// Aplica un cambio de brillo en tiempo real.
-    /// </summary>
     public void PreviewBrightness(float previewValue)
     {
         ApplyBrightness(previewValue);
         SyncSliders(brightnessSliders, previewValue);
     }
 
-    // --- FUNCIÓN DE CONTROL (Llamada por GraphicsSettingsView) ---
-
-    /// <summary>
-    /// Método PÚBLICO para forzar a este control a mostrar un valor (Reset).
-    /// </summary>
     public void SetValue(float brightnessValue)
     {
         CurrentBrightness = brightnessValue;
         ApplyBrightness(brightnessValue);
         SyncSliders(brightnessSliders, brightnessValue);
-    }
 
-    // --- Métodos Internos ---
+        // ✅ Guardar el valor del slider directamente
+        PlayerPrefs.SetFloat(BrightnessKey, brightnessValue);
+        PlayerPrefs.Save();
+    }
 
     private void ApplyBrightness(float valor)
     {
-        float factor = 1f + valor;
+        // factor controlado por slider (-2 a 2)
+        float factor = Mathf.Clamp(1f + valor, 0.1f, 4f);
+
         if (!usaGradient)
+        {
             RenderSettings.ambientIntensity = Mathf.Clamp(factor, 0f, 3f);
+        }
         else
         {
             RenderSettings.ambientSkyColor = skyOriginal * factor;
             RenderSettings.ambientEquatorColor = equatorOriginal * factor;
             RenderSettings.ambientGroundColor = groundOriginal * factor;
         }
+
         if (luzPrincipal != null)
             luzPrincipal.intensity = intensidadOriginalLuz * factor;
+
+        for (int i = 0; i < spotLights.Count; i++)
+        {
+            if (spotLights[i] != null)
+                spotLights[i].intensity = intensidadesSpotOriginales[i] * factor;
+        }
     }
 
     private void SyncSliders(List<Slider> sliders, float value)
@@ -94,9 +94,7 @@ public class ControlBrilloYOscuridadURPModern : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         CacheBrightnessOriginals();
-        float valueToApply = (SettingsManager.Instance != null) ?
-                              SettingsManager.Instance.CurrentBrightness :
-                              CurrentBrightness;
+        float valueToApply = PlayerPrefs.GetFloat(BrightnessKey, defaultBrightness);
         SetValue(valueToApply);
     }
 
@@ -109,7 +107,14 @@ public class ControlBrilloYOscuridadURPModern : MonoBehaviour
             equatorOriginal = RenderSettings.ambientEquatorColor;
             groundOriginal = RenderSettings.ambientGroundColor;
         }
+
         if (luzPrincipal != null)
             intensidadOriginalLuz = luzPrincipal.intensity;
+
+        intensidadesSpotOriginales.Clear();
+        foreach (var s in spotLights)
+        {
+            intensidadesSpotOriginales.Add(s != null ? s.intensity : 1f);
+        }
     }
 }

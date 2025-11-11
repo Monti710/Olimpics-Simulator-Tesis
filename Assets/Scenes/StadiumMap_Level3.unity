@@ -4729,6 +4729,7 @@ PrefabInstance:
     - {fileID: 6077838198970949558, guid: 38f4d7a60002c7b4195d161af7817b36, type: 3}
     - {fileID: 8413613701935093075, guid: 38f4d7a60002c7b4195d161af7817b36, type: 3}
     - {fileID: 4808439602949835776, guid: 38f4d7a60002c7b4195d161af7817b36, type: 3}
+    - {fileID: 8664928637232840928, guid: 38f4d7a60002c7b4195d161af7817b36, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 9049854656032840154, guid: 38f4d7a60002c7b4195d161af7817b36, type: 3}
@@ -12517,6 +12518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   luzPrincipal: {fileID: 381671840}
+  spotLights: []
   brightnessSliders:
   - {fileID: 737166707}
   - {fileID: 632741002}
